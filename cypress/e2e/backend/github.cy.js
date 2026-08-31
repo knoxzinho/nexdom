@@ -9,7 +9,7 @@ describe('GitHub API', () => {
   // 1. AUTENTICAÇÃO
   // =====================================================
 
-  it('Script realizar autenticação do usuário na API do GitHub', () => {
+  it('Script realiza autenticação do usuário na API do GitHub', () => {
 
     const token = Cypress.env('githubToken');
 
