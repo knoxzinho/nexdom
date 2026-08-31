@@ -6,7 +6,7 @@ describe('GitHub API', () => {
 
 
   // =====================================================
-  // 1. AUTENTICAÇÃO
+  // 1. FASE DE AUTENTICAÇÃO
   // =====================================================
 
   it('Script realiza autenticação do usuário na API do GitHub', () => {
@@ -25,14 +25,14 @@ describe('GitHub API', () => {
 
     }).then((response) => {
 
-      // Valida o status HTTP
+      // Validar o status HTTP
       expect(response.status).to.eq(200);
 
-      // Valida se existe o login do usuário
+      // Validar se existe o login do usuário
       expect(response.body)
         .to.have.property('login');
 
-      // Valida se o login não está vazio
+      // Validar se o login não está vazio
       expect(response.body.login)
         .to.not.be.empty;
 
@@ -49,7 +49,7 @@ describe('GitHub API', () => {
 
     const token = Cypress.env('githubToken');
 
-    // Gera um nome único para evitar conflito
+    // Gerar um nome único para evitar conflito
     repositoryName = `nexdom-${Date.now()}`;
 
 
@@ -78,19 +78,19 @@ describe('GitHub API', () => {
       // Valida status da criação
       expect(response.status).to.eq(201);
 
-      // Valida nome
+      // Validar nome do repositório
       expect(response.body.name)
         .to.eq(repositoryName);
 
-      // Valida descrição
+      // Validar descrição do repositório
       expect(response.body.description)
         .to.eq('Repositório criado');
 
-      // Valida se é público
+      // Validar se é público ou privado
       expect(response.body.private)
         .to.eq(false);
 
-      // Guarda o proprietário do repositório
+      // Guardar o proprietário do repositório
       repositoryOwner = response.body.owner.login;
 
     })
@@ -114,14 +114,14 @@ describe('GitHub API', () => {
 
       }).then((response) => {
 
-        // Valida status da consulta
+        // Validar status da consulta
         expect(response.status).to.eq(200);
 
-        // Valida nome
+        // Validar nome
         expect(response.body.name)
           .to.eq(repositoryName);
 
-        // Valida proprietário
+        // Validar proprietário
         expect(response.body.owner.login)
           .to.eq(repositoryOwner);
 
@@ -148,26 +148,26 @@ describe('GitHub API', () => {
 
         body: {
           title: 'Issue criada pelo teste Cypress',
-          body: 'Issue criada automaticamente durante o desafio de QA.'
+          body: 'Issue criada automaticamente durante o desafio de QA usando Cypress.'
         }
 
       }).then((response) => {
 
-        // Valida status da criação
+        // Validar status da criação
         expect(response.status).to.eq(201);
 
-        // Valida título
+        // Validar título
         expect(response.body.title)
           .to.eq('Issue criada pelo teste Cypress');
 
-        // Valida estado
+        // Validar status
         expect(response.body.state)
           .to.eq('open');
 
-        // Guarda o número da Issue
+        // Guardar o número da Issue
         issueNumber = response.body.number;
 
-        // Valida se o número é realmente numérico
+        // Validar se o número é realmente numérico
         expect(issueNumber)
           .to.be.a('number');
 
@@ -194,18 +194,18 @@ describe('GitHub API', () => {
 
       }).then((response) => {
 
-        // Valida status da consulta
+        // Validar status da consulta
         expect(response.status).to.eq(200);
 
-        // Valida número da Issue
+        // Validar número da Issue
         expect(response.body.number)
           .to.eq(issueNumber);
 
-        // Valida título
+        // Validar título
         expect(response.body.title)
           .to.eq('Issue criada pelo teste Cypress');
 
-        // Valida estado
+        // Validar estado
         expect(response.body.state)
           .to.eq('open');
 
@@ -232,7 +232,7 @@ describe('GitHub API', () => {
 
       }).then((response) => {
 
-        // Valida se o repositório foi excluído
+        // Validar se o repositório foi excluído
         expect(response.status).to.eq(204);
 
       });
