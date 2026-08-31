@@ -1,0 +1,8 @@
+node_modules/
+cypress/screenshots/
+cypress/videos/
+# cypress.env.json está com o token de autenticação do GitHub, não deve ser versionado.
+cypress.env.json
+.env
+.env.*
+!.env.example
